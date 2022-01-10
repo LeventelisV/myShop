@@ -20,25 +20,8 @@ export default function LoadingSpiner() {
                 </svg>
             </div>
             <style>
-                {`body{
-  padding: 1em;
-  background: #2B3134;
-  color: #777;
-  text-align: center;
-  font-family: "Gill sans", sans-serif;
-  width: 80%;
-  margin: 0 auto;
-}
-h1{
-  margin: 1em 0;
-  border-bottom: 1px dashed;
-  padding-bottom: 1em;
-  font-weight: lighter;
-}
-p{
-  font-style: italic;
-}
-.loader{
+
+{`.loader{
   margin: 0 0 2em;
   height: 100px;
   width: 20%;
