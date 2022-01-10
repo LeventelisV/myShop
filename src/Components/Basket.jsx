@@ -1,26 +1,17 @@
+
+
 export default function Basket({ selectedProducts }) {
+    console.log('--Basket()')
     let shipping = 30;
     let tax = 0;
     let totalCost = 0;
-
-      // useEffect(
-    //     function () {
-    //         if(number>0){
-    //             addToBasket();
-    //         }
-    //         else{
-    //             return null
-    //         }
-    //     },[number]
-    // );
-
     const findCostOfProducts = () => {
-        
+
         selectedProducts.map((product) => {
             totalCost += product.price;
         })
         localStorage.setItem("price", totalCost.toFixed(2))
-        
+
         return totalCost.toFixed(2)
     }
 
@@ -47,7 +38,6 @@ export default function Basket({ selectedProducts }) {
                         <p className="text-2xl leading-normal text-gray-800">Total</p>
                         <p className="text-2xl font-bold leading-normal text-right text-gray-800">{totalCost > 0 ? (totalCost + tax + shipping).toFixed(2) + '€' : 0}</p>
                     </div>
-                    {/* onClick={() => setShow(!show)} */}
                     <button className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white">
                         Checkout
                     </button>
