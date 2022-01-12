@@ -8,7 +8,7 @@ export default function CategorySearch({ products }) {
         initialCategories.indexOf(product.category) === -1 ? initialCategories.push(product.category) : console.log('already exists')
     })
     console.log('initialCategories',initialCategories);
-     setCategories(initialCategories);
+    //  setCategories(initialCategories);
 
     // const [dropDownFilter, setDropDownFilter] = useState(initialCategories[0])
     
