@@ -1,22 +1,23 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useContext } from "react"
+import Context from "../Context"
 
-export default function Product({ product, selectedProducts, setSelectedProducts }) {
+
+export default function Product({ product}) {
     console.log('--product()')
-    let selectedProductsCopy = selectedProducts
+    const {selectedProducts,setSelectedProducts} = useContext(Context)
     const [number, setNumber] = useState(0)
 
     const addToBasket = () => {
 
         setSelectedProducts(selectedProducts.concat(product))
         setNumber(number + 1)
-        console.log(selectedProducts)
     }
 
     const removeFromBasket = () => {
         let productIndex = selectedProducts.findIndex(arrayProduct => arrayProduct.id === product.id)
         if (productIndex >= 0) {
             setNumber(number - 1)
-            selectedProductsCopy = JSON.parse(JSON.stringify(selectedProducts))
+            let selectedProductsCopy = [...selectedProducts]
             selectedProductsCopy.splice(productIndex, 1)
             setSelectedProducts(selectedProductsCopy)
         }

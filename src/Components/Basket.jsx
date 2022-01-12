@@ -1,7 +1,9 @@
+import Context from "../Context";
+import {useContext} from 'react'
 
-
-export default function Basket({ selectedProducts }) {
+export default function Basket() {
     console.log('--Basket()')
+    const {selectedProducts} = useContext(Context)
     let shipping = 30;
     let tax = 0;
     let totalCost = 0;
