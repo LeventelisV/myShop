@@ -1,4 +1,5 @@
 import { useState, useContext } from "react"
+import { useEffect } from "react/cjs/react.development"
 import Context from "../Context"
 
 
@@ -7,10 +8,18 @@ export default function Product({ product}) {
     const {selectedProducts,setSelectedProducts} = useContext(Context)
     const [number, setNumber] = useState(0)
 
+   
+
     const addToBasket = () => {
 
         setSelectedProducts(selectedProducts.concat(product))
         setNumber(number + 1)
+        
+        // localStorage.setItem("localStorageProducts",JSON.stringify(JSON.parse(localStorage.getItem("localStorageProducts")).concat(product)))
+        // let savedItems = localStorage.getItem("localStorageProducts")
+        // console.log('saved:', savedItems)
+        // localStorage.setItem("localStorageProducts",JSON.stringify(localStorage.getItem("localStorageProducts").concat(product)))
+        // console.log('localStorage products: ',localStorage.getItem("localStorageProducts"))
     }
 
     const removeFromBasket = () => {
@@ -22,6 +31,14 @@ export default function Product({ product}) {
             setSelectedProducts(selectedProductsCopy)
         }
     }
+
+    useEffect(()=>{
+        localStorage.setItem('localStorageProducts',JSON.stringify(selectedProducts))
+        // localStorage.setItem('number',number)
+        console.log('MyStorage',localStorage.getItem('localStorageProducts'))
+
+    },[selectedProducts])
+
 
 
 
