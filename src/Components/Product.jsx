@@ -5,7 +5,7 @@ import Context from "../Context"
 export default function Product({ product }) {
     console.log('--product()')
     const { selectedProducts, setSelectedProducts } = useContext(Context)
-    const [number, setNumber] = useState(0)
+    const [number,setNumber] = useState(0)
 
     // const findNumberOfProducts = () => {
     //     const products = localStorage.getItem('localStorageProducts')
@@ -17,19 +17,11 @@ export default function Product({ product }) {
     const addToBasket = () => {
 
         setSelectedProducts(selectedProducts.concat(product))
-        setNumber(number + 1)
-
-        // localStorage.setItem("localStorageProducts",JSON.stringify(JSON.parse(localStorage.getItem("localStorageProducts")).concat(product)))
-        // let savedItems = localStorage.getItem("localStorageProducts")
-        // console.log('saved:', savedItems)
-        // localStorage.setItem("localStorageProducts",JSON.stringify(localStorage.getItem("localStorageProducts").concat(product)))
-        // console.log('localStorage products: ',localStorage.getItem("localStorageProducts"))
     }
 
     const removeFromBasket = () => {
         let productIndex = selectedProducts.findIndex(arrayProduct => arrayProduct.id === product.id)
         if (productIndex >= 0) {
-            setNumber(number - 1)
             let selectedProductsCopy = [...selectedProducts]
             selectedProductsCopy.splice(productIndex, 1)
             setSelectedProducts(selectedProductsCopy)
@@ -37,16 +29,15 @@ export default function Product({ product }) {
     }
 
     useEffect(() => {
+        let number = 0;
         localStorage.setItem('localStorageProducts', JSON.stringify(selectedProducts))
         const products = JSON.parse(localStorage.getItem('localStorageProducts'))
-        console.log('p',products)
-        let num = 0 
         products.forEach((pro)=>{
             if(pro.id === product.id){
-                num = num +1
+                number = number +1
             }
+            setNumber(number)
         })
-        console.log(num)
 
     }, [selectedProducts])
 
