@@ -1,20 +1,24 @@
-import { useState, useContext } from "react"
-import { useEffect } from "react/cjs/react.development"
+import { useState, useContext, useEffect } from "react"
 import Context from "../Context"
 
 
-export default function Product({ product}) {
+export default function Product({ product }) {
     console.log('--product()')
-    const {selectedProducts,setSelectedProducts} = useContext(Context)
+    const { selectedProducts, setSelectedProducts } = useContext(Context)
     const [number, setNumber] = useState(0)
 
-   
+    // const findNumberOfProducts = () => {
+    //     const products = localStorage.getItem('localStorageProducts')
+    //     // console.log('products', products);
+    // }
+
+    // findNumberOfProducts();
 
     const addToBasket = () => {
 
         setSelectedProducts(selectedProducts.concat(product))
         setNumber(number + 1)
-        
+
         // localStorage.setItem("localStorageProducts",JSON.stringify(JSON.parse(localStorage.getItem("localStorageProducts")).concat(product)))
         // let savedItems = localStorage.getItem("localStorageProducts")
         // console.log('saved:', savedItems)
@@ -32,12 +36,19 @@ export default function Product({ product}) {
         }
     }
 
-    useEffect(()=>{
-        localStorage.setItem('localStorageProducts',JSON.stringify(selectedProducts))
-        // localStorage.setItem('number',number)
-        console.log('MyStorage',localStorage.getItem('localStorageProducts'))
+    useEffect(() => {
+        localStorage.setItem('localStorageProducts', JSON.stringify(selectedProducts))
+        const products = JSON.parse(localStorage.getItem('localStorageProducts'))
+        console.log('p',products)
+        let num = 0 
+        products.forEach((pro)=>{
+            if(pro.id === product.id){
+                num = num +1
+            }
+        })
+        console.log(num)
 
-    },[selectedProducts])
+    }, [selectedProducts])
 
 
 

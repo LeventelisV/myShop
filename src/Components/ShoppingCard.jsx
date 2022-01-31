@@ -12,8 +12,7 @@ function ShoppingCard({ products, error, loading, categories }) {
     console.log('-shoppingCard()')
     const hasErrors = error !== null;
     const isNetworkError = [] && hasErrors;
-    const [selectedProducts, setSelectedProducts] = useState(JSON.parse(localStorage.getItem('localStorageProducts')))
-    // const [selectedProducts, setSelectedProducts] = useState(JSON.parse(localStorage.getItem('localStorageProducts')))
+    const [selectedProducts, setSelectedProducts] = useState(localStorage.getItem('localStorageProducts') ? JSON.parse(localStorage.getItem('localStorageProducts')):[])
 
     return (
         <>
