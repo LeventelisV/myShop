@@ -7,13 +7,6 @@ export default function Product({ product }) {
     const { selectedProducts, setSelectedProducts } = useContext(Context)
     const [number,setNumber] = useState(0)
 
-    // const findNumberOfProducts = () => {
-    //     const products = localStorage.getItem('localStorageProducts')
-    //     // console.log('products', products);
-    // }
-
-    // findNumberOfProducts();
-
     const addToBasket = () => {
 
         setSelectedProducts(selectedProducts.concat(product))
@@ -35,10 +28,9 @@ export default function Product({ product }) {
         products.forEach((pro)=>{
             if(pro.id === product.id){
                 number = number +1
-            }
-            setNumber(number)
+            }   
         })
-
+        setNumber(number)
     }, [selectedProducts])
 
 
@@ -57,7 +49,6 @@ export default function Product({ product }) {
                     <p className="text-base font-black leading-none text-gray-800">{product.title}</p>
                 </div>
                 <p className="text-xs leading-3 text-gray-600 pt-4">{product.description}</p>
-                <p className="w-96 text-xs leading-3 text-gray-600">Composition: 100% calf leather</p>
                 <div className="flex items-center justify-end pt-5 pr-6">
                     <div className="flex items-center">
                         <button onClick={addToBasket} className="mr-6 bg-yellow-500 p-2 px-4 rounded-xl leading-3 text-gray-800 cursor-pointer">Buy<span className="ml-2">{number > 0 ? number : null}</span></button>
