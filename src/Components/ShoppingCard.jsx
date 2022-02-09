@@ -12,12 +12,26 @@ function ShoppingCard({ products, error, loading, categories }) {
     console.log('-shoppingCard()')
     const hasErrors = error !== null;
     const isNetworkError = [] && hasErrors;
-    const [selectedProducts, setSelectedProducts] = useState(localStorage.getItem('localStorageProducts') ? JSON.parse(localStorage.getItem('localStorageProducts')):[])
-    
+    const [selectedProducts, setSelectedProducts] = useState(localStorage.getItem('localStorageProducts') ? JSON.parse(localStorage.getItem('localStorageProducts')) : [])
+    const [category, setCategory] = useState('-1')
+     
+
+    const displayedProducts = () => {
+        if (category === '-1') {
+            return products
+        }
+        let categoryProducts = [...products].filter((product) => {
+            return product.category === category
+        })
+        return categoryProducts
+
+    }
+
     return (
         <>
-            <Context.Provider value={{ selectedProducts, setSelectedProducts, categories }}>
+            <Context.Provider value={{ selectedProducts, setSelectedProducts, categories, category, setCategory }}>
                 <div>
+
                     {(
                         <div className="w-full h-full bg-black bg-opacity-90 overflow-y-auto overflow-x-hidden fixed sticky-0" id="chec-div">
 
@@ -29,7 +43,7 @@ function ShoppingCard({ products, error, loading, categories }) {
                                         {!loading && <CategorySearch />}
                                         {isNetworkError && 'Network Error'}
                                         {loading && <LoadingSpiner />}
-                                        {products.map((product) => {
+                                        {displayedProducts().map((product) => {
                                             return (
                                                 <MemoProduct
                                                     product={product}
