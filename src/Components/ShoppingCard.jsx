@@ -13,7 +13,7 @@ function ShoppingCard({ products, error, loading, categories }) {
     const hasErrors = error !== null;
     const isNetworkError = [] && hasErrors;
     const [selectedProducts, setSelectedProducts] = useState(localStorage.getItem('localStorageProducts') ? JSON.parse(localStorage.getItem('localStorageProducts')):[])
-
+    
     return (
         <>
             <Context.Provider value={{ selectedProducts, setSelectedProducts, categories }}>
