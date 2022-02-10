@@ -1,19 +1,19 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import Product from "./Product"
 import Basket from "./Basket";
 import LoadingSpiner from "./LoadingSpiner";
 import CategorySearch from "./CategorySearch";
 import myCss from "../css/myCss.css"
 import Context from "../Context";
+
 const MemoProduct = React.memo(Product);
 
 
-function ShoppingCard({ products, error, loading, categories }) {
+function ShoppingCard({ products, error, loading }) {
     console.log('-shoppingCard()')
     const hasErrors = error !== null;
     const isNetworkError = [] && hasErrors;
-    const [selectedProducts, setSelectedProducts] = useState(localStorage.getItem('localStorageProducts') ? JSON.parse(localStorage.getItem('localStorageProducts')) : [])
-    const [category, setCategory] = useState('-1')
+    const {category} = useContext(Context)
      
 
     const displayedProducts = () => {
@@ -29,7 +29,6 @@ function ShoppingCard({ products, error, loading, categories }) {
 
     return (
         <>
-            <Context.Provider value={{ selectedProducts, setSelectedProducts, categories, category, setCategory }}>
                 <div>
 
                     {(
@@ -60,7 +59,6 @@ function ShoppingCard({ products, error, loading, categories }) {
                         </div>
                     )}
                 </div>
-            </Context.Provider>
         </>
     );
 }
