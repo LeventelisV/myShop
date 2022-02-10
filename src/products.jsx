@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import axios from "axios"
 import ShoppingCard from "./Components/ShoppingCard"
+import Checkout from './Components/Checkout';
 import Context from './Context';
 
 export default function Products(props) {
@@ -11,7 +13,7 @@ export default function Products(props) {
     const [categories, setCategories] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState(localStorage.getItem('localStorageProducts') ? JSON.parse(localStorage.getItem('localStorageProducts')) : [])
     const [category, setCategory] = useState('-1')
-    
+
     console.log('products()')
     useEffect(() => {
         const getData = async () => {
@@ -43,7 +45,12 @@ export default function Products(props) {
 
     return (
         <Context.Provider value={{ selectedProducts, setSelectedProducts, categories, category, setCategory }}>
-            <ShoppingCard products={data} error={error} loading={loading} categories={categories} />
+            <Router>
+                <Routes>
+                    <Route path="/" element={<ShoppingCard products={data} error={error} loading={loading} categories={categories} />} />
+                    <Route path="/buy" element={<Checkout />} />
+                </Routes>
+            </Router>
         </Context.Provider>
     )
 
