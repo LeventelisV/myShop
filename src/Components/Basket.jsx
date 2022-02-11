@@ -1,12 +1,11 @@
 import Context from "../Context";
-import {useContext} from 'react'
+import { useContext } from 'react'
 import { NavLink as Link, } from "react-router-dom";
 
 export default function Basket() {
     console.log('--Basket()')
-    const {selectedProducts} = useContext(Context)
-    let shipping = 30;
-    let tax = 0;
+    const { selectedProducts, tax, shipping } = useContext(Context)
+
     let totalCost = 0;
     const findCostOfProducts = () => {
 
@@ -41,7 +40,7 @@ export default function Basket() {
                         <p className="text-2xl leading-normal text-gray-800">Total</p>
                         <p className="text-2xl font-bold leading-normal text-right text-gray-800">{totalCost > 0 ? (totalCost + tax + shipping).toFixed(2) + '€' : 0}</p>
                     </div>
-                    <Link to="/buy" className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white">
+                    <Link to="/buy" className="text-base leading-none w-full py-5 px-6 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white">
                         Checkout
                     </Link>
                 </div>
