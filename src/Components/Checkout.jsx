@@ -1,42 +1,45 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useRef } from "react"
 import Context from "../Context"
 
 export default function Checkout() {
-  const { selectedProducts,tax,shipping } = useContext(Context)
+  console.log('-Checkout')
+  const { selectedProducts, tax, shipping, } = useContext(Context)
 
   const productsPrice = Number(localStorage.getItem('price'))
 
-  let buyProducts = []
+  const buyProducts = useRef([])
 
-  function findOcc(arr, key) {
-
+  function findOcc(arr, key,) {
+    buyProducts.current = []
     arr.forEach((x) => {
-      if (buyProducts.some((val) => { return val[key] === x[key] })) {
-        buyProducts.forEach((k) => {
+      if (buyProducts.current.some((val) => { return val[key] === x[key] })) {
+        buyProducts.current.forEach((k) => {
           if (k[key] === x[key]) {
             k['selected']++
           }
         })
       }
-      
-      else{
+
+      else {
         let a = JSON.parse(JSON.stringify(x))
         a['selected'] = 1
-        buyProducts.push(a)
+        buyProducts.current.push(a)
+        // setBuyProducts([...buyProducts,a])
 
       }
 
 
     })
+
   }
 
   useEffect(() => {
-    findOcc(selectedProducts,'id')
-    console.log('useEffect')
+    findOcc(selectedProducts, 'id')
   }, [selectedProducts])
 
 
-  console.log(buyProducts)
+  console.log(buyProducts.current)
+
   return (
 
     <div className="bg-white">
@@ -80,7 +83,7 @@ export default function Checkout() {
             </dl> */}
 
             <ul role="list" className="text-sm font-medium divide-y divide-white divide-opacity-10">
-              {buyProducts.map((product) => (
+              {buyProducts.current.map((product) => (
                 <li key={product.id} className="flex items-start py-6 space-x-4">
                   <img
                     src={product.image}
@@ -88,11 +91,11 @@ export default function Checkout() {
                     className="flex-none w-20 h-20 rounded-md object-center object-cover"
                   />
                   <div className="flex-auto space-y-1">
-                    <h3 className="text-white">{product.name}</h3>
+                    <h3 className="">{product.title}</h3>
                     <p>{product.color}</p>
                     <p>{product.size}</p>
                   </div>
-                  <p className="flex-none text-base font-medium text-white">{product.price}</p>
+                  <p className="flex-none text-base font-medium ">{product.price} x {product.selected}</p>
                 </li>
               ))}
             </ul>
@@ -113,7 +116,7 @@ export default function Checkout() {
                 <dd>{tax}</dd>
               </div>
 
-              <div className="flex items-center justify-between border-t border-white border-opacity-10 text-white pt-6">
+              <div className="flex items-center justify-between border-t border-white border-opacity-10  pt-6">
                 <dt className="text-base">Total</dt>
                 <dd className="text-base">{productsPrice + tax + shipping} €</dd>
               </div>
