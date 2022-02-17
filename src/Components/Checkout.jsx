@@ -34,11 +34,11 @@ export default function Checkout() {
   }
 
   useEffect(() => {
+    console.log('useEffect')
     findOcc(selectedProducts, 'id')
-  }, [selectedProducts])
+  }, [])
 
-
-  console.log(buyProducts.current)
+  console.log(buyProducts.current, 'buyProducts.current')
 
   return (
 
