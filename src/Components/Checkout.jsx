@@ -1,8 +1,12 @@
 import { useContext, useEffect, useRef } from "react"
 import Context from "../Context"
+import useForceUpdate from 'use-force-update';
+
 
 export default function Checkout() {
   console.log('-Checkout')
+  const forceUpdate = useForceUpdate();
+
   const { selectedProducts, tax, shipping, } = useContext(Context)
 
   const productsPrice = Number(localStorage.getItem('price'))
@@ -36,6 +40,7 @@ export default function Checkout() {
   useEffect(() => {
     console.log('useEffect')
     findOcc(selectedProducts, 'id')
+    forceUpdate()
   }, [])
 
   console.log(buyProducts.current, 'buyProducts.current')
