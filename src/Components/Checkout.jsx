@@ -58,7 +58,7 @@ export default function Checkout() {
                   <img
                     src={product.image}
                     alt={product.imageAlt}
-                    className="flex-none w-20 h-20 rounded-md object-center object-cover"
+                    className="flex-none w-24 rounded-md object-center object-cover"
                   />
                   <div className="flex-auto space-y-1">
                     <h3 className="">{product.title}</h3>
