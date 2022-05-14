@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef } from "react"
 import Context from "../Context"
 import useForceUpdate from 'use-force-update';
+import { NavLink as Link } from "react-router-dom";
 
 
 export default function Checkout() {
@@ -300,13 +301,17 @@ export default function Checkout() {
                 </div>
               </div>
 
-              <div className="mt-10 flex justify-end pt-6 border-t border-gray-200">
+              <div className="mt-10 flex justify-between pt-6 border-t border-gray-200">
+                <Link to="/"
+                  className="bg-red-800 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-red-500">
+                  Back
+                </Link>
                 <button
                   type="submit"
-                  className="bg-green-800 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-green-500"
-                >
+                  className="bg-green-800 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-green-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-green-500">
                   Pay now
                 </button>
+
               </div>
             </div>
           </form>
