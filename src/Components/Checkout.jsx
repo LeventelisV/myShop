@@ -5,13 +5,9 @@ import { NavLink as Link } from "react-router-dom";
 
 
 export default function Checkout() {
-  console.log('-Checkout')
   const forceUpdate = useForceUpdate();
-
   const { selectedProducts, tax, shipping, } = useContext(Context)
-
   const productsPrice = Number(localStorage.getItem('price'))
-
   const buyProducts = useRef([])
 
   function findOcc(arr, key,) {
@@ -29,11 +25,7 @@ export default function Checkout() {
         let a = JSON.parse(JSON.stringify(x))
         a['selected'] = 1
         buyProducts.current.push(a)
-        // setBuyProducts([...buyProducts,a])
-
       }
-
-
     })
 
   }
@@ -44,33 +36,10 @@ export default function Checkout() {
     forceUpdate()
   }, [])
 
-  console.log(buyProducts.current, 'buyProducts.current')
-
   return (
-
     <div className="bg-white">
-      {/* Background color split screen for large screens */}
       <div className="hidden lg:block fixed top-0 left-0 w-1/2 h-full bg-white" aria-hidden="true" />
       <div className="hidden lg:block fixed top-0 right-0 w-1/2 h-full bg-yellow-400" aria-hidden="true" />
-
-      <header className="relative max-w-7xl mx-auto bg-yellow-400 py-6 lg:bg-transparent lg:grid lg:grid-cols-2 lg:gap-x-16 lg:px-8 lg:pt-16 lg:pb-10">
-        {/* <div className="max-w-2xl mx-auto flex px-4 lg:max-w-lg lg:w-full lg:px-0">
-            <a href="#">
-              <span className="sr-only">Workflow</span>
-              <img
-                src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=300"
-                alt=""
-                className="h-8 w-auto lg:hidden"
-              />
-              <img
-                src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                alt=""
-                className="hidden lg:block h-8 w-auto"
-              />
-            </a>
-          </div> */}
-      </header>
-
       <main className="relative grid grid-cols-1 gap-x-16 max-w-7xl mx-auto lg:px-8 lg:grid-cols-2">
         <h1 className="sr-only">Checkout</h1>
 
@@ -124,7 +93,7 @@ export default function Checkout() {
 
               <div className="flex items-center justify-between border-t border-white border-opacity-10  pt-6">
                 <dt className="text-base">Total</dt>
-                <dd className="text-base">{productsPrice + tax + shipping} €</dd>
+                <dd className="text-base">{(productsPrice + tax + shipping).toFixed(2)} €</dd>
               </div>
             </dl>
           </div>

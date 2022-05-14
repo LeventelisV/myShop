@@ -3,17 +3,14 @@ import { useContext } from 'react'
 import { NavLink as Link, } from "react-router-dom";
 
 export default function Basket() {
-    console.log('--Basket()')
     const { selectedProducts, tax, shipping } = useContext(Context)
 
     let totalCost = 0;
     const findCostOfProducts = () => {
-
         selectedProducts.map((product) => {
             totalCost += product.price;
         })
         localStorage.setItem("price", totalCost.toFixed(2))
-
         return totalCost.toFixed(2)
     }
 
