@@ -9,6 +9,7 @@ export default function Basket() {
     const findCostOfProducts = () => {
         selectedProducts.map((product) => {
             totalCost += product.price;
+            return product
         })
         localStorage.setItem("price", totalCost.toFixed(2))
         return totalCost.toFixed(2)

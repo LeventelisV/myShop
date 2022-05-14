@@ -50,7 +50,7 @@ export default function Checkout() {
             <h2 id="summary-heading" className="sr-only">
               Order summary
             </h2>
-            <ul role="list" className="text-sm font-medium divide-y divide-white divide-opacity-10">
+            <ul  className="text-sm font-medium divide-y divide-white divide-opacity-10">
               {buyProducts.current.map((product) => (
                 <li key={product.id} className="flex items-start py-6 space-x-4">
                   <img
