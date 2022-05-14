@@ -12,7 +12,6 @@ export default function Checkout() {
 
   // findOcc checks if an the new selected item is already selected and so just is needed to update quantity
   //else adds ot to the aray
-
   function findOcc(arr, key,) {
     buyProducts.current = []
     arr.forEach((x) => {
@@ -32,10 +31,9 @@ export default function Checkout() {
   }
 
   useEffect(() => {
-    console.log('useEffect')
     findOcc(selectedProducts, 'id')
     forceUpdate()
-  }, [selectedProducts,forceUpdate])
+  }, [selectedProducts, forceUpdate])
 
   return (
     <div className="bg-white">

@@ -39,8 +39,7 @@ function ShoppingCard() {
                                                 product={product}
                                                 key={product.id}
                                             />
-                                        )
-                                    })
+                                        )}) 
                                     }
                                 </div>
                                 <Basket />

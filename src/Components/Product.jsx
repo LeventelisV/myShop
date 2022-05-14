@@ -29,7 +29,7 @@ export default function Product({ product }) {
             }   
         })
         setNumber(number)
-    }, [selectedProducts])
+    }, [selectedProducts,product])
 
     return (
         <article className="md:flex items-center mt-14 py-8 border-t border-gray-200">

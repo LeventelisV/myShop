@@ -1,11 +1,11 @@
 import Context from "../Context";
 import { useContext } from 'react'
-import { NavLink as Link, } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 
 export default function Basket() {
     const { selectedProducts, tax, shipping } = useContext(Context)
-
     let totalCost = 0;
+    
     const findCostOfProducts = () => {
         selectedProducts.map((product) => {
             totalCost += product.price;
