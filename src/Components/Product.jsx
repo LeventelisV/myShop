@@ -3,12 +3,10 @@ import Context from "../Context"
 
 
 export default function Product({ product }) {
-    console.log('--product()')
     const { selectedProducts, setSelectedProducts } = useContext(Context)
     const [number,setNumber] = useState(0)
 
     const addToBasket = () => {
-
         setSelectedProducts(selectedProducts.concat(product))
     }
 
@@ -33,14 +31,8 @@ export default function Product({ product }) {
         setNumber(number)
     }, [selectedProducts])
 
-
-
-
-
-
     return (
-
-        <div className="md:flex items-center mt-14 py-8 border-t border-gray-200">
+        <article className="md:flex items-center mt-14 py-8 border-t border-gray-200">
             <div className="w-1/4">
                 <img src={product.image} className="w-full h-full object-center object-cover" />
             </div>
@@ -56,9 +48,8 @@ export default function Product({ product }) {
                             onClick={removeFromBasket}>Remove from the basket</a>
                     </div>
                     <p className="text-base text-xl font-black leading-none text-gray-800">{product.price}</p>
-
                 </div>
             </div>
-        </div>
+        </article>
     )
 }

@@ -6,8 +6,8 @@ import ShoppingCard from "./Components/ShoppingCard"
 import Checkout from './Components/Checkout';
 import Context from './Context';
 
-export default function Products(props) {
-    const [products, setProducts] = useState([]);   // { data: [], categories: [] }
+export default function Products() {
+    const [products, setProducts] = useState([]);  
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState([]);
@@ -16,7 +16,6 @@ export default function Products(props) {
     const [tax, setTax] = useState(0)
     const [shipping, setShippping] = useState(30)
 
-    console.log('products()')
     useEffect(() => {
         const getData = async () => {
             try {
@@ -26,23 +25,17 @@ export default function Products(props) {
                 let initialCategories = response.data.map(product => product.category);
                 initialCategories = new Set(initialCategories);
                 setCategories([...initialCategories]);
-                // setData({ data: response.data, categories: initialCategories })
                 setProducts(response.data);
-                // to data den einai dia8esimo edw!!!!
                 setError(null);
-
             }
             catch (err) {
                 setError(err.message);
-                // setData(null);
-
             }
             finally {
                 setLoading(false)
             }
         }
         getData()
-
     }, []);
 
     return (

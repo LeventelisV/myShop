@@ -10,6 +10,9 @@ export default function Checkout() {
   const productsPrice = Number(localStorage.getItem('price'))
   const buyProducts = useRef([])
 
+  // findOcc checks if an the new selected item is already selected and so just is needed to update quantity
+  //else adds ot to the aray
+
   function findOcc(arr, key,) {
     buyProducts.current = []
     arr.forEach((x) => {
@@ -20,21 +23,19 @@ export default function Checkout() {
           }
         })
       }
-
       else {
         let a = JSON.parse(JSON.stringify(x))
         a['selected'] = 1
         buyProducts.current.push(a)
       }
     })
-
   }
 
   useEffect(() => {
     console.log('useEffect')
     findOcc(selectedProducts, 'id')
     forceUpdate()
-  }, [])
+  }, [selectedProducts,forceUpdate])
 
   return (
     <div className="bg-white">
@@ -51,12 +52,6 @@ export default function Checkout() {
             <h2 id="summary-heading" className="sr-only">
               Order summary
             </h2>
-
-            {/* <dl>
-              <dt className="text-sm font-medium">Amount due</dt>
-              <dd className="mt-1 text-3xl font-extrabold text-white">$232.00</dd>
-            </dl> */}
-
             <ul role="list" className="text-sm font-medium divide-y divide-white divide-opacity-10">
               {buyProducts.current.map((product) => (
                 <li key={product.id} className="flex items-start py-6 space-x-4">
