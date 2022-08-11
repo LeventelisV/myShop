@@ -264,7 +264,7 @@ export default function Checkout() {
               </div>
 
               <div className="mt-10 flex justify-between pt-6 border-t border-gray-200">
-                <Link to="/"
+                <Link to="/myShop"
                   className="bg-red-800 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-red-500">
                   Back
                 </Link>
