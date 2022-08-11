@@ -56,8 +56,8 @@ export default function Products() {
             }}>
             <Router>
                 <Routes>
-                    <Route path="/" element={<ShoppingCard />} />
-                    <Route path="/buy" element={<Checkout />} />
+                    <Route path="/myShop" element={<ShoppingCard />} />
+                    <Route path="/myShop/buy" element={<Checkout />} />
                 </Routes>
             </Router>
         </Context.Provider>
