@@ -3,6 +3,7 @@ import Context from "../Context"
 
 
 export default function Product({ product }) {
+    console.log(product)
     const { selectedProducts, setSelectedProducts } = useContext(Context)
     const [number,setNumber] = useState(0)
 

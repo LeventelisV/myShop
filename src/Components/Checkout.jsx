@@ -11,7 +11,7 @@ export default function Checkout() {
   const buyProducts = useRef([])
 
   // findOcc checks if an the new selected item is already selected and so just is needed to update quantity
-  //else adds ot to the aray
+  //else adds it to the aray
   function findOcc(arr, key,) {
     buyProducts.current = []
     arr.forEach((x) => {

@@ -35,7 +35,7 @@ export default function Basket() {
                 </div>
                 <div>
                     <div className="flex items-center pb-6 justify-between lg:pt-5 pt-20">
-                        <p className="text-2xl leading-normal text-gray-800">Total</p>
+                        <p className="text-2xl leading-normal text-gray-800">Totall</p>
                         <p className="text-2xl font-bold leading-normal text-right text-gray-800">{totalCost > 0 ? (totalCost + tax + shipping).toFixed(2) + '€' : 0}</p>
                     </div>
                     <Link to="/myShop/buy" className="text-base leading-none w-full py-5 px-6 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white">
